@@ -95,8 +95,17 @@ int main(void)
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
+  static int foo = 50;
   while (1)
   {
+	  if(foo > 2000)foo = 50;
+	  foo = foo * 1.1;
+	  HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_5);
+
+	  /* Insert delay 100 ms */
+	  HAL_Delay(foo);
+
+
   /* USER CODE END WHILE */
 
   /* USER CODE BEGIN 3 */
