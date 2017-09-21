@@ -95,16 +95,23 @@ int main(void)
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
-  static int foo = 50;
+  //volatile char baz[] = "foobarbaz";
+  volatile int foo = 50;
+  volatile int bar = 2000;
   while (1)
   {
-	  if(foo > 2000)foo = 50;
-	  foo = foo * 1.1;
-	  HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_5);
+	  if(foo > 2000)foo = 49;
+	  foo = foo * 1.3679;
+	  // HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_5);
+	  //HAL_GPIO_WritePin(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin, GPIO_PinState PinState);
+	  HAL_GPIO_WritePin(GPIOA, GPIO_PIN_5, GPIO_PIN_SET);
 
 	  /* Insert delay 100 ms */
 	  HAL_Delay(foo);
 
+	  HAL_GPIO_WritePin(GPIOA, GPIO_PIN_5, GPIO_PIN_RESET);
+	  bar = 2000 - foo;
+	  HAL_Delay(bar);
 
   /* USER CODE END WHILE */
 
